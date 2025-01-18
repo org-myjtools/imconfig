@@ -1,0 +1,18 @@
+[properties.test.key]
+
+string = "Properties Test String Value"
+strings = [ "Properties Array Value 1", "Properties Array Value 2" ]
+bool = true
+bools = [ "true", "false", "true" ]
+integer = 77
+integers = [ 77, 79, 83 ]
+long = 54_353
+longs = [ 54_353, 65_256, 98_432 ]
+double = 3.45
+doubles = [ 3.45, 6.76, 9.32 ]
+float = 6.98
+floats = [ 6.98, 2.23, 1.24 ]
+bigdecimal = 755.87
+bigdecimals = [ 755.87, 876.43, 908.32 ]
+biginteger = 123_456_789
+bigintegers = [ 123_456_789, 543_987_532, 549_874_348 ]
