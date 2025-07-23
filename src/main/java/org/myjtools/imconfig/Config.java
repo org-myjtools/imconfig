@@ -106,6 +106,13 @@ public interface Config {
     }
 
 
+    /**
+     * Create a new defined configuration
+     */
+    static Collection<PropertyDefinition> loadDefinitionsFromResource(String resource, ClassLoader classLoader) {
+        return factory.loadDefinitionsFromResource(resource,classLoader);
+    }
+
 
     /**
      * Creates a new configuration resulting of adding the given prefix to every

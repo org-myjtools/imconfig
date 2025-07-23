@@ -204,6 +204,11 @@ public class ConfigFactory {
     }
 
 
-
-
+    public Collection<PropertyDefinition> loadDefinitionsFromResource(String resource, ClassLoader classLoader) {
+        try (InputStream inputStream = classLoader.getResourceAsStream(resource)) {
+            return parser.read(inputStream);
+        } catch (IOException e) {
+            throw new ConfigException(e);
+        }
+    }
 }

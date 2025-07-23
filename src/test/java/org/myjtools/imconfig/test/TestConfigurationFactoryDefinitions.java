@@ -35,6 +35,17 @@ import static org.assertj.core.api.Assertions.assertThat;
         .contains("Invalid value '6', expected: Integer number between 2 and 3");
     }
 
+     @Test
+     void testConfigurationValidationFromResource() {
+         var conf = Config.ofMap(Map.of("defined.property.min-max-number", "6"));
+         assertThat(conf.get("defined.property.min-max-number",Integer.class)).hasValue(6);
+         conf = conf.append(Config.withDefinitions(Config.loadDefinitionsFromResource("definition.yaml", getClass().getClassLoader())));
+         assertThat(conf.get("defined.property.min-max-number",Integer.class)).hasValue(6);
+
+         assertThat(conf.validations("defined.property.min-max-number"))
+                 .contains("Invalid value '6', expected: Integer number between 2 and 3");
+     }
+
 
     private void assertConfiguration(Config conf) {
         assertThat(conf.getDefinitions()).hasSize(6);
