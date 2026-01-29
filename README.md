@@ -41,13 +41,13 @@ Usage
 <dependency>
     <groupId>org.myjtools</groupId>
     <artifactId>imconfig</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
 #### Gradle
 ```groovy
-    implementation 'org.myjtools:imconfig:1.0.0'
+    implementation 'org.myjtools:imconfig:1.1.0'
 ```
 
 
@@ -247,22 +247,10 @@ var configuration = Config.factory().accordingDefinitions(definitions);
 ```
 
 
-### Maven dependency
-```xml
-<dependency>
-    <groupId>org.myjtools</groupId>
-    <artifactId>imconfig</artifactId>
-    <version>1.0.0</version>
-</dependency>
-```
+## Requirements
 
+- Java 21 or newer
 
-Requirements
------------------------------------------------------------------------------------------
-- Java 11 or newer.
-
-
-## Contributing
 
 ## Authors
 
