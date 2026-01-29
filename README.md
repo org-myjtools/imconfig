@@ -1,4 +1,8 @@
+# imconfig
 
+[![Maven Verify](https://github.com/org-myjtools/imconfig/actions/workflows/verify.yml/badge.svg)](https://github.com/org-myjtools/imconfig/actions/workflows/verify.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org-myjtools_imconfig&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=org-myjtools_imconfig)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org-myjtools_imconfig&metric=coverage)](https://sonarcloud.io/summary/new_code?id=org-myjtools_imconfig)
 
 > A multi-purpose, immutable configuration interface
 
