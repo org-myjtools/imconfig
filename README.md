@@ -41,13 +41,13 @@ Usage
 <dependency>
     <groupId>org.myjtools</groupId>
     <artifactId>imconfig</artifactId>
-    <version>1.1.0</version>
+    <version>1.5.0</version>
 </dependency>
 ```
 
 #### Gradle
 ```groovy
-    implementation 'org.myjtools:imconfig:1.1.0'
+    implementation 'org.myjtools:imconfig:1.5.0'
 ```
 
 
