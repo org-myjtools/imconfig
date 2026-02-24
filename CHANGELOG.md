@@ -2,6 +2,13 @@
 
 
 
+## Version 1.5.1 - 24/02/2026
+
+### Fixed:
+
+* `PropertyDefinition.toString()` now trims leading/trailing whitespace from description and hint
+
+
 ## Version 1.5.0 - 20/02/2026
 
 ### Changed:

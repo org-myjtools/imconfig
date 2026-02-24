@@ -110,7 +110,7 @@ public class PropertyDefinition {
        return String.format(
            "- %s: %s%s",
            property,
-           description.isBlank() ? hint : description,
+           (description.isBlank() ? hint : description).strip(),
            description.isBlank() ? "" : "\n  "+hint
        );
     }
