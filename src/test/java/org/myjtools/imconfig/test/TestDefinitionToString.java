@@ -17,15 +17,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class TestDefinitionToString {
 
-    private final PropertyDefinitionParser parser = new PropertyDefinitionParser();
-
 
     @Test
-    void testPrintDefinition() throws IOException {
+    void testPrintDefinition()  {
 
         File file = Path.of("src","test","resources","definition.yaml").toFile();
         Config definitions = Config.withDefinitions(Config.loadDefinitions(file.toURI()));
-        System.out.println(definitions.getDefinitionsToString());
+        assertThat(definitions.getDefinitionsToString()).isEqualTo("""
+                - defined.property.boolean: true | false
+                - defined.property.enumeration: One of the following: red, yellow, orange
+                - defined.property.min-max-number: Integer number between 2 and 3
+                - defined.property.regex-text: Text satisfying regex //A\\d\\dB//
+                - defined.property.required: This is a test property that is required
+                  Any text (required)
+                - defined.property.with-default-value: This is a property with a default value
+                  Any integer number [default: 5]""");
 
 
 

@@ -107,7 +107,8 @@ public abstract class AbstractConfiguration implements Config {
 
     @Override
     public String getDefinitionsToString() {
-       return getDefinitions().values().stream()
+        return getDefinitions().values().stream()
+           .sorted((d1,d2)->d1.property().compareTo(d2.property()))
            .map(PropertyDefinition::toString)
            .collect(Collectors.joining("\n"));
     }

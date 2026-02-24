@@ -7,6 +7,7 @@
 ### Fixed:
 
 * `PropertyDefinition.toString()` now trims leading/trailing whitespace from description and hint
+* `Config.getDefinitionsToString()` now returns definitions sorted alphabetically by property name
 
 
 ## Version 1.5.0 - 20/02/2026
