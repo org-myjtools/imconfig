@@ -41,13 +41,13 @@ Usage
 <dependency>
     <groupId>org.myjtools</groupId>
     <artifactId>imconfig</artifactId>
-    <version>1.5.0</version>
+    <version>1.6.0</version>
 </dependency>
 ```
 
 #### Gradle
 ```groovy
-    implementation 'org.myjtools:imconfig:1.5.0'
+    implementation 'org.myjtools:imconfig:1.6.0'
 ```
 
 
@@ -65,6 +65,26 @@ Two configurations can be merged, using one of them as base:
 Config confA = Config.env();
 Config confB = Config.ofPath(Path.of("myConfig.yaml"));
 Config confC = confA.append(confB);
+```
+
+You can also inspect the first level of a configuration tree:
+
+```java
+Config conf = Config.ofMap(Map.of(
+    "datasourceA.user", "a",
+    "datasourceA.password", "b",
+    "datasourceB.user", "c"
+));
+
+List<String> datasourceNames = conf.innerKeys().toList();
+// ["datasourceA", "datasourceB"]
+```
+
+If you want to navigate one of those branches, combine `innerKeys()` with `inner(...)`:
+
+```java
+Config datasource = conf.inner("datasourceA");
+Optional<String> user = datasource.get("user", String.class);
 ```
 
 You can create a new configuration from Java objects:
@@ -282,4 +302,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-

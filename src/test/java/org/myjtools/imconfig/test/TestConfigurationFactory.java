@@ -296,6 +296,29 @@ class TestConfigurationFactory {
 
 
     @Test
+    void innerKeysReturnsDistinctFirstLevelKeys() {
+        var conf = Config.ofMap(Map.of(
+            "datasourceA.user", "a",
+            "datasourceA.password", "b",
+            "datasourceB.user", "c",
+            "datasourceB.password", "d"
+        ));
+        assertThat(conf.innerKeys().toList()).containsExactlyInAnyOrder("datasourceA", "datasourceB");
+    }
+
+
+    @Test
+    void innerKeysUsesCurrentConfigurationView() {
+        var conf = Config.ofMap(Map.of(
+            "datasourceA.user", "a",
+            "datasourceA.password", "b",
+            "datasourceB.user", "c"
+        )).inner("datasourceA");
+        assertThat(conf.innerKeys().toList()).containsExactlyInAnyOrder("user", "password");
+    }
+
+
+    @Test
     void transformConfigToMap() {
         var confAsMap = Config.ofMap(Map.of(
             "property.a", "",

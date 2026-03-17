@@ -171,7 +171,10 @@ public class ApacheConfiguration2 extends AbstractConfiguration {
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder("configuration:\n---------------\n");
-        conf.getKeys().forEachRemaining(key -> {
+        List<String> keys = new ArrayList<>();
+        conf.getKeys().forEachRemaining(keys::add);
+        Collections.sort(keys);
+        for (var key : keys) {
             final String[] values = conf.getStringArray(key);
             String value = "<undefined>";
             if (values.length == 1) {
@@ -184,7 +187,7 @@ public class ApacheConfiguration2 extends AbstractConfiguration {
                 .append(" : ")
                 .append(value)
                 .append("\n");
-        });
+        };
         return string.append("---------------").toString();
     }
 

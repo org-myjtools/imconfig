@@ -1,6 +1,18 @@
 # Changelog
 
 
+## Version 1.6.0 - 17/03/2026
+
+### Added:
+
+* New method `Config.innerKeys()` to retrieve the distinct first-level keys from the current configuration view
+
+### Changed:
+
+* Configuration string rendering is now sorted alphabetically for deterministic output
+* README examples now document `innerKeys()` usage and dependency version `1.6.0`
+
+
 
 ## Version 1.5.1 - 24/02/2026
 

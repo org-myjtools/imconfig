@@ -158,6 +158,20 @@ public interface Config {
      *  even for those which have no value */
     Stream<String> keys();
 
+    /**
+     * @return A stream with the distinct first-level keys of the current configuration.
+     * For example, keys {@code datasourceA.user} and {@code datasourceA.password}
+     * both contribute the inner key {@code datasourceA}.
+     */
+    default Stream<String> innerKeys() {
+        return keys()
+            .map(key -> {
+                int separatorIndex = key.indexOf('.');
+                return separatorIndex >= 0 ? key.substring(0, separatorIndex) : key;
+            })
+            .distinct();
+    }
+
 
     /**
      * @return An optional value of the specified type, empty if the key does not
