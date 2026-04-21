@@ -51,7 +51,7 @@ public final class PropertyTypeFactory {
         }
         throw new ConfigException(
             "Undefined property type: "+ type +
-            " . Accepted values are: text, integer, decimal, enum"
+            " . Accepted values are: text, integer, decimal, enum, boolean, map"
         );
     }
 

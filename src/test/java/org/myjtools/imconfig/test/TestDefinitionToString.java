@@ -26,6 +26,9 @@ class TestDefinitionToString {
         assertThat(definitions.getDefinitionsToString()).isEqualTo("""
                 - defined.property.boolean: true | false
                 - defined.property.enumeration: One of the following: red, yellow, orange
+                - defined.property.map: Map of named datasource configurations. Each key is the datasource alias used in
+                test steps to identify the target database connection.
+                  Map with entries: url (Any text (required)), username (Any text (required)), password (Any text (required)), driver (Any text (required)), dialect (Any text (required)), schema (Any text), catalog (Any text)
                 - defined.property.min-max-number: Integer number between 2 and 3
                 - defined.property.regex-text: Text satisfying regex //A\\d\\dB//
                 - defined.property.required: This is a test property that is required

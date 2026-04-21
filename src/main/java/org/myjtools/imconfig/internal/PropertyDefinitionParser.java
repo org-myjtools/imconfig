@@ -4,6 +4,8 @@ package org.myjtools.imconfig.internal;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import org.myjtools.imconfig.ConfigException;
 import org.myjtools.imconfig.PropertyDefinition;
+import org.myjtools.imconfig.PropertyType;
+import org.myjtools.imconfig.types.MapPropertyType;
 import org.myjtools.imconfig.types.internal.PropertyTypeFactory;
 
 import java.io.IOException;
@@ -11,6 +13,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -47,21 +50,34 @@ public class PropertyDefinitionParser {
     private PropertyDefinition parseDefinition(Entry<String, Map<String, Object>> entry) {
         try {
             var definition = entry.getValue();
+            String type = (String) definition.get("type");
+            PropertyType propertyType = "map".equals(type)
+                ? new MapPropertyType(parseEntries((Map<String, Map<String, Object>>) definition.get("entries")))
+                : typeFactory.create(type, (Map<String, Object>) definition.get("constraints"));
             return PropertyDefinition.builder()
                 .property(entry.getKey())
                 .description((String) definition.get("description"))
-                .required((Boolean)definition.get("required"))
+                .required((Boolean) definition.get("required"))
                 .defaultValue(toString(definition.get("defaultValue")))
-                .propertyType(typeFactory.create(
-                    (String)definition.get("type"),
-                    (Map<String, Object>) definition.get("constraints")
-                ))
+                .propertyType(propertyType)
                 .build();
         } catch (RuntimeException e) {
             throw new ConfigException(
                 "Bad configuration of property '"+entry.getKey()+"' : "+e.getMessage(), e
             );
         }
+    }
+
+
+    private Map<String, PropertyDefinition> parseEntries(Map<String, Map<String, Object>> entriesMap) {
+        if (entriesMap == null) {
+            return Map.of();
+        }
+        var result = new LinkedHashMap<String, PropertyDefinition>();
+        for (var entry : entriesMap.entrySet()) {
+            result.put(entry.getKey(), parseDefinition(entry));
+        }
+        return result;
     }
 
 

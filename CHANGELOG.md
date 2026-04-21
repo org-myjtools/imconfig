@@ -1,6 +1,16 @@
 # Changelog
 
 
+## Version 1.7.0 - 21/04/2026
+
+### Added:
+
+* New property definition type `map`, which describes a composite property whose sub-keys share a
+  common prefix and each follow their own typed definition (entries). Supported in both YAML
+  definition files (via the `entries:` block) and programmatically via
+  `PropertyDefinitionBuilder.mapType(Map<String, PropertyDefinition>)`.
+
+
 ## Version 1.6.0 - 17/03/2026
 
 ### Added:

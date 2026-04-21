@@ -2,7 +2,9 @@ package org.myjtools.imconfig;
 
 import org.myjtools.imconfig.types.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -96,6 +98,11 @@ public class PropertyDefinitionBuilder {
 
     public PropertyDefinitionBuilder booleanType() {
         this.propertyType = new BooleanPropertyType();
+        return this;
+    }
+
+    public PropertyDefinitionBuilder mapType(Map<String, PropertyDefinition> entries) {
+        this.propertyType = new MapPropertyType(new LinkedHashMap<>(entries));
         return this;
     }
 

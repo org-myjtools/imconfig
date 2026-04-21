@@ -41,13 +41,13 @@ Usage
 <dependency>
     <groupId>org.myjtools</groupId>
     <artifactId>imconfig</artifactId>
-    <version>1.6.0</version>
+    <version>1.7.0</version>
 </dependency>
 ```
 
 #### Gradle
 ```groovy
-    implementation 'org.myjtools:imconfig:1.6.0'
+    implementation 'org.myjtools:imconfig:1.7.0'
 ```
 
 
@@ -165,13 +165,14 @@ some basic validations and default values. Each expected property is defined by 
 default value, and additional constraints regarding the data type.
 Supported types are:
 
-| type      | description           | additional constraints |
-| --------- | --------------------- | ---------------------- |
-| `text`    | plain text            | regular expression     |
-| `enum`    | strict list of values |                        |
-| `boolean` | `true` or `false`     |                        |
-| `integer` | integer number        | min and/or max bounds  |
-| `decimal` | decimal number        | min and/or max bounds  |
+| type      | description                        | additional constraints |
+| --------- | ---------------------------------- | ---------------------- |
+| `text`    | plain text                         | regular expression     |
+| `enum`    | strict list of values              |                        |
+| `boolean` | `true` or `false`                  |                        |
+| `integer` | integer number                     | min and/or max bounds  |
+| `decimal` | decimal number                     | min and/or max bounds  |
+| `map`     | composite set of named sub-entries | entry definitions      |
 
 Property definitions can be either read from YAML files (as a kind of _meta-configuration_), or
 created programmatically, using any of the existing methods starting with `according...` . Notice that
@@ -240,7 +241,28 @@ my-properties.property-enumeration:
 
 my-properties.property-boolean:
    type: boolean
+
+my-properties.property-datasource:
+   description: Named datasource connection parameters.
+   type: map
+   entries:
+      url:
+         description: The JDBC connection URL.
+         type: text
+         required: true
+      username:
+         description: The database username.
+         type: text
+         required: true
+      password:
+         description: The database password.
+         type: text
+         required: true
 ```
+
+A `map` property describes a group of related sub-keys that share a common prefix. For example,
+`my-properties.property-datasource.url`, `my-properties.property-datasource.username`, etc.
+Each entry is itself a full property definition (type, description, required, constraints).
 
 #### Create property definitions programmatically
 

@@ -48,13 +48,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
     private void assertConfiguration(Config conf) {
-        assertThat(conf.getDefinitions()).hasSize(6);
+        assertThat(conf.getDefinitions()).hasSize(7);
         assertThat(conf.getDefinition("defined.property.required")).isNotEmpty();
         assertThat(conf.getDefinition("defined.property.with-default-value")).isNotEmpty();
         assertThat(conf.getDefinition("defined.property.regex-text")).isNotEmpty();
         assertThat(conf.getDefinition("defined.property.min-max-number")).isNotEmpty();
         assertThat(conf.getDefinition("defined.property.enumeration")).isNotEmpty();
         assertThat(conf.getDefinition("defined.property.boolean")).isNotEmpty();
+        assertThat(conf.getDefinition("defined.property.map")).isNotEmpty();
         assertThat(conf.getDefinition("undefined.property")).isEmpty();
         assertThat(conf.get("defined.property.regex-text", String.class)).isEmpty();
         assertThat(conf.get("defined.property.with-default-value", Integer.class)).hasValue(5);
